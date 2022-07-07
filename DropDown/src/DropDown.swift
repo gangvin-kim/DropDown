@@ -272,6 +272,12 @@ public final class DropDown: UIView {
 		willSet { tableViewContainer.layer.shadowOffset = newValue }
 		didSet { reloadAllComponents() }
 	}
+    
+    @objc public dynamic func setupShadowOffset(offset: CGSize) {
+        tableViewContainer.layer.shadowOffset = offset
+        tableView.layer.shadowOffset = offset
+        reloadAllComponents()
+    }
 
 	/**
 	The opacity of the shadow.
@@ -282,6 +288,12 @@ public final class DropDown: UIView {
 		willSet { tableViewContainer.layer.shadowOpacity = newValue }
 		didSet { reloadAllComponents() }
 	}
+    
+    @objc public dynamic func setupShadowOpacity(opacity: Float) {
+        tableViewContainer.layer.shadowOpacity = opacity
+        tableView.layer.shadowOpacity = opacity
+        reloadAllComponents()
+    }
 
 	/**
 	The radius of the shadow.
@@ -292,6 +304,12 @@ public final class DropDown: UIView {
 		willSet { tableViewContainer.layer.shadowRadius = newValue }
 		didSet { reloadAllComponents() }
 	}
+    
+    @objc public dynamic func setupShadowRadius(radius: CGFloat) {
+        tableViewContainer.layer.shadowRadius = radius
+        tableView.layer.shadowRadius = radius
+        reloadAllComponents()
+    }
 
 	/**
 	The duration of the show/hide animation.
