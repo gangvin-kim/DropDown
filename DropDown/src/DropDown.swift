@@ -778,7 +778,7 @@ extension DropDown {
 		let windowY = window.bounds.minY + DPDConstant.UI.HeightPadding
 
 		if y < windowY {
-			offscreenHeight = abs(y - windowY)
+            offscreenHeight = abs(y - windowY - (self.maxHeight ?? 0))
 			y = windowY + (self.maxHeight ?? 0)
 		}
 		
