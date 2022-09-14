@@ -153,6 +153,10 @@ public final class DropDown: UIView {
 	public var width: CGFloat? {
 		didSet { setNeedsUpdateConstraints() }
 	}
+    
+    public var maxHeight: CGFloat? {
+        didSet { setNeedsUpdateConstraints() }
+    }
 
 	/**
 	arrowIndication.x
@@ -726,7 +730,10 @@ extension DropDown {
 		constraintWidthToFittingSizeIfNecessary(layout: &layout)
 		constraintWidthToBoundsIfNecessary(layout: &layout, in: window)
 		
-		let visibleHeight = tableHeight - layout.offscreenHeight
+		var visibleHeight = tableHeight - layout.offscreenHeight
+        if let maxHeight = self.maxHeight {
+            visibleHeight = maxHeight
+        }
 		let canBeDisplayed = visibleHeight >= minHeight
 
 		return (layout.x, layout.y, layout.width, layout.offscreenHeight, visibleHeight, canBeDisplayed, direction)
