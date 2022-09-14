@@ -710,7 +710,7 @@ extension DropDown {
 				layout = computeLayoutBottomDisplay(window: window)
 				direction = .bottom
 				
-				if layout.offscreenHeight > 0 {
+                if layout.offscreenHeight > 0 || self.maxHeight == nil {
 					let topLayout = computeLayoutForTopDisplay(window: window)
 					
 					if topLayout.offscreenHeight < layout.offscreenHeight {
