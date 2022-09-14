@@ -774,6 +774,10 @@ extension DropDown {
 
 		let x = anchorViewX + topOffset.x
         var y = (anchorViewMaxY + topOffset.y) - tableHeight
+        
+        if let maxHeight = self.maxHeight {
+            y = (anchorViewMaxY + topOffset.y) - maxHeight
+        }
 
 		let windowY = window.bounds.minY + DPDConstant.UI.HeightPadding
 
