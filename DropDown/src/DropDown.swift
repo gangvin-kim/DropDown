@@ -779,7 +779,7 @@ extension DropDown {
 
 		if y < windowY {
 			offscreenHeight = abs(y - windowY)
-			y = windowY
+			y = windowY + (self.maxHeight ?? 0)
 		}
 		
 		let width = self.width ?? (anchorView?.plainView.bounds.width ?? fittingWidth()) - topOffset.x
