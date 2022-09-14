@@ -710,7 +710,7 @@ extension DropDown {
 				layout = computeLayoutBottomDisplay(window: window)
 				direction = .bottom
 				
-                if layout.offscreenHeight > 0 || self.maxHeight == nil {
+                if layout.offscreenHeight > 0 {
 					let topLayout = computeLayoutForTopDisplay(window: window)
 					
 					if topLayout.offscreenHeight < layout.offscreenHeight {
@@ -751,7 +751,7 @@ extension DropDown {
 		let x = anchorViewX + bottomOffset.x
 		let y = anchorViewY + bottomOffset.y
 		
-		let maxY = y + tableHeight
+        let maxY = y + (self.maxHeight ?? tableHeight)
 		let windowMaxY = window.bounds.maxY - DPDConstant.UI.HeightPadding - offsetFromWindowBottom
 		
 		let keyboardListener = KeyboardListener.sharedInstance
