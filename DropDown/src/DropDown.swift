@@ -733,7 +733,7 @@ extension DropDown {
 		var visibleHeight = tableHeight - layout.offscreenHeight
         if let maxHeight = self.maxHeight {
             visibleHeight = maxHeight
-            layout.y -= maxHeight
+//            layout.y -= maxHeight
         }
 		let canBeDisplayed = visibleHeight >= minHeight
 
@@ -773,7 +773,7 @@ extension DropDown {
 		let anchorViewMaxY = anchorView?.plainView.windowFrame?.maxY ?? 0
 
 		let x = anchorViewX + topOffset.x
-		var y = (anchorViewMaxY + topOffset.y) - tableHeight
+        var y = (anchorViewMaxY + topOffset.y) - (tableHeight + (self.maxHeight ?? 0))
 
 		let windowY = window.bounds.minY + DPDConstant.UI.HeightPadding
 
