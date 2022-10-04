@@ -314,6 +314,13 @@ public final class DropDown: UIView {
         tableView.layer.shadowRadius = radius
         reloadAllComponents()
     }
+    
+    @objc public dynamic func setContentInset(inset: UIEdgeInsets) {
+//        tableViewContainer.layer.shadowRadius = radius
+//        tableView.layer.shadowRadius = radius
+        tableView.contentInset = inset
+        reloadAllComponents()
+    }
 
 	/**
 	The duration of the show/hide animation.
