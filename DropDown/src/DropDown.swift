@@ -157,6 +157,10 @@ public final class DropDown: UIView {
     public var maxHeight: CGFloat? {
         didSet { setNeedsUpdateConstraints() }
     }
+    
+    public var setScroll: Bool? {
+        didSet { setNeedsUpdateConstraints() }
+    }
 
 	/**
 	arrowIndication.x
@@ -609,8 +613,12 @@ extension DropDown {
 		widthConstraint.constant = layout.width
 		heightConstraint.constant = layout.visibleHeight
 
-		tableView.isScrollEnabled = layout.offscreenHeight > 0
-
+        if let setScroll = setScroll {
+            tableView.isScrollEnabled = setScroll
+        } else {
+            tableView.isScrollEnabled = layout.offscreenHeight > 0
+        }
+		
 		DispatchQueue.main.async { [weak self] in
 			self?.tableView.flashScrollIndicators()
 		}
@@ -740,7 +748,7 @@ extension DropDown {
 		var visibleHeight = tableHeight - layout.offscreenHeight
         if let maxHeight = self.maxHeight {
             visibleHeight = maxHeight
-            layout.offscreenHeight = layout.y + tableHeight
+            layout.offscreenHeight = layout.y + tableHeight + tableView.contentInset.top + tableView.contentInset.bottom
         }
 		let canBeDisplayed = visibleHeight >= minHeight
 
@@ -758,7 +766,7 @@ extension DropDown {
 		let x = anchorViewX + bottomOffset.x
 		let y = anchorViewY + bottomOffset.y
 		
-        let maxY = y + (self.maxHeight ?? tableHeight)
+        let maxY = y + (self.maxHeight ?? tableHeight) + tableView.contentInset.top + tableView.contentInset.bottom
 		let windowMaxY = window.bounds.maxY - DPDConstant.UI.HeightPadding - offsetFromWindowBottom
 		
 		let keyboardListener = KeyboardListener.sharedInstance
